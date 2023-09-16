@@ -18,7 +18,7 @@ First, add the following to your `Cargo.toml`:
 
 ```
 [dependencies]
-shapeless = "0.1.0"
+shapeless = "0.1.1"
 ```
 
 Then, you can use the `shapeless` crate in your code like this:
