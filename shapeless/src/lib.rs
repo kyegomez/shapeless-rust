@@ -15,14 +15,11 @@ impl<T: Shapeless> Shapeless for T {
     }
 }
 
-
-
 pub fn wrapper<T: Shapeless>(arg: T) {
-    println("{:?}", arg);
+    println!("{:?}", arg);
 }
 
-
-pub fn is_type<T: Shapeless>(arg: &dyn Any) -> bool {
+pub fn is_type<T: Shapeless>(arg: &dyn Shapeless) -> bool {
     arg.as_any().is::<T>()
 }
 
@@ -30,9 +27,9 @@ pub fn downcast_ref<T: Shapeless>(arg: &dyn Shapeless) -> Option<&T> {
     arg.as_any().downcast_ref::<T>()
 }
 
-pub fn convert<T: Shapeless, U: Shapeless>(arg: T) -> Result<U, &'static str> {
+pub fn convert<T: Shapeless, U: Shapeless>(arg: &T) -> Result<&U, &'static str> {
     if let Some(val) = arg.as_any().downcast_ref::<U>() {
-        Ok(*val)
+        Ok(val)
     } else {
         Err("Conversion failed")
     }

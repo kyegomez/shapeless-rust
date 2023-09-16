@@ -1,8 +1,11 @@
 [package]
 name = "shapeless"
-version = "0.1.0"
+description = "Shapeless package that transforms types into shapelessness"
+version = "0.1.1"
+authors = ["Kye Gomez kye@apac.ai"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT"
+repository = "https://github.com/kyegomez/shapeless-rust"
+keywords = ["shapeless", "types", "rust"]
 
 [dependencies]
