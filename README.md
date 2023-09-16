@@ -65,7 +65,7 @@ Shapeless Trait
 
 The `Shapeless` trait is the core of the Shapeless crate. It can be implemented for any type and provides methods for dynamic typing.
 
-```
+```rust
 pub trait Shapeless: Debug + Any {
     fn as_any(&self) -> &dyn Any;
     fn type_name(&self) -> &'static str;
@@ -81,7 +81,7 @@ Wrapper Function
 
 The `wrapper` function accepts any type that implements the `Shapeless` trait and prints it using the `Debug` trait.
 
-```
+```rust
 pub fn wrapper<T: Shapeless>(arg: T) {
     println!("{:?}", arg);
 }
@@ -94,7 +94,7 @@ Type Checking
 
 The `is_type` function checks if a `Shapeless` object is of a certain type.
 
-```
+```rust
 pub fn is_type<T: Shapeless>(arg: &dyn Any) -> bool {
     arg.as_any().is::<T>()
 }
@@ -107,7 +107,7 @@ Type Casting
 
 The `downcast_ref` function attempts to downcast a `Shapeless` object to a specific type.
 
-```
+```rust
 pub fn downcast_ref<T: Shapeless>(arg: &dyn Shapeless) -> Option<&T> {
     arg.as_any().downcast_ref::<T>()
 }
@@ -120,7 +120,7 @@ Type Conversion
 
 The `convert` function attempts to convert a `Shapeless` object to another type if possible.
 
-```
+```rust
 pub fn convert<T: Shapeless, U: Shapeless>(arg: &T) -> Result<&U, &'static str> {
     if let Some(val) = arg.as_any().downcast_ref::<U>() {
         Ok(val)
@@ -139,7 +139,7 @@ Here's a step-by-step guide on how to use the Shapeless crate.
 
 1.  First, add the Shapeless crate to your `Cargo.toml` file:
 
-```
+```toml
 [dependencies]
 shapeless = "0.1.0"
 ```
@@ -148,7 +148,7 @@ shapeless = "0.1.0"
 
 1.  Next, import the Shapeless crate in your Rust file:
 
-```
+```rust
 use shapeless::{Shapeless, wrapper, is_type, downcast_ref};
 ```
 
@@ -156,7 +156,7 @@ use shapeless::{Shapeless, wrapper, is_type, downcast_ref};
 
 1.  Define a struct and implement the `Debug` trait for it:
 
-```
+```rust
 struct MyStruct {
     value: i32,
 }
@@ -172,7 +172,7 @@ impl std::fmt::Debug for MyStruct {
 
 1.  Implement the `Shapeless` trait for your struct:
 
-```
+```rust
 impl Shapeless for MyStruct {}
 ```
 
@@ -180,7 +180,7 @@ impl Shapeless for MyStruct {}
 
 1.  Now you can use the `wrapper`, `is_type`, and `downcast_ref` functions with instances of your struct:
 
-```
+```rust
 fn main() {
     let my_struct = MyStruct { value: 5 };
 
